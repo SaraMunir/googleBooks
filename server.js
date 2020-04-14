@@ -5,9 +5,16 @@ const orm = require( './db/orm.mongoose' );
 
 const PORT = process.env.PORT || 8080;
 
+
 const app = express();
 app.use( express.urlencoded({ extended: false }) );
 app.use( express.json() );
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.post('/api/saveBook', async function( req,res ){
     const bookInfo = req.body;
