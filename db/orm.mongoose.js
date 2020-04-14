@@ -52,7 +52,7 @@ async function loadBook(){
     // const dbBook = db.books( );
 
     const myBookList =  await db.books.find({})
-    // console.log('my list in orm is myBookList: ', myBookList);
+    console.log('my list in orm is myBookList: ', myBookList);
     return myBookList;
 }
 
