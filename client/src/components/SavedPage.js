@@ -1,4 +1,5 @@
-import React, { useState, useEffect }   from 'react'
+import React, { useState, useEffect }   from 'react';
+import axios from 'axios';
 
 function SavedPage() {
     const messageStyle = {
@@ -12,7 +13,9 @@ function SavedPage() {
         loadBookList();
     }, [] );
 
-    async function loadBookList(){    
+    async function loadBookList(){ 
+        
+        // const apiBooks = await axios.get(`/api/booklist`);
         const apiBooks = await fetch(`/api/booklist`).then( result=>result.json() );
         setshowBookList( apiBooks );
         console.log( 'apiBooks', apiBooks);

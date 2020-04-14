@@ -13,9 +13,6 @@ app.use( express.json() );
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 app.post('/api/saveBook', async function( req,res ){
     const bookInfo = req.body;
@@ -35,7 +32,10 @@ app.get('/api/deleteBook/:id', async function( req,res ){
     res.send( deleteBook );
 });
 
-
+// alway put after every but before listen
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 
 app.listen( PORT, function(){
